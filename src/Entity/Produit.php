@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\MappedSuperclass]
 class Produit
@@ -10,10 +11,11 @@ class Produit
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private ?int $id;
 
-    #[ORM\Column(length: 255)]
-    private ?string $nom = null;
+    #[ORM\Column(length: 255, nullable: false)]
+    #[Assert\NotBlank(message: 'Le nom ne peut pas être vide.')]
+    private ?string $nom ;
 
     #[ORM\Column]
     private ?float $prix = null;

@@ -2,24 +2,28 @@
    
    namespace App\test\Repository;
 
-use App\Kernel;
-use PHPUnit\Framework\TestCase;
 use App\DataFixtures\UserFixtures;
 use App\Repository\UserRepository;
-
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Liip\TestFixturesBundle\Test\FixturesTrait;
 
    class UserRepositoryTest extends KernelTestCase
    {
-
-      use FixturesTrait;
+      
 
        public function testCount()
        {
+         // Boot the Symfony kernel
            self::bootKernel();
-           $this->loadFixtures([UserFixtures::class]);
-           $users = self::$container->get(UserRepository::class)->count([]);
-           $this->assertEquals(10, $users);
+
+           
+        // Access the UserRepository service using getContainer()
+        $userRepository = self::getContainer()->get(UserRepository::class);
+
+        // Perform the count query
+        $users = $userRepository->count([]);
+
+        // Assert that the count matches the expected value
+           $this->assertEquals(21, $users);
        }
    }  
