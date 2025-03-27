@@ -3,8 +3,10 @@
 namespace App\Form;
 
 use App\Entity\Bougie;
+use App\Entity\Marque;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
@@ -58,6 +60,15 @@ class BougieType extends AbstractType
                 'attr'=>[
                     "placeholder"=>"saisier la taille"
                 ]
+            ])
+            ->add('Marque', EntityType::class, [
+                'class' => Marque::class, // L'entité à utiliser
+                'choice_label' => 'libelle', // La propriété à afficher dans la liste déroulante
+                'placeholder' => 'Sélectionnez une marque', // Optionnel : un placeholder pour la liste
+                'required' => true, // Optionnel : rendre le champ obligatoire
+                'attr' => [
+                    'class' => 'form-control', // Ajouter des classes CSS si nécessaire
+                ],
             ])
         ;
     }

@@ -36,6 +36,7 @@
                     <h6>Couleur : {{ LaBougie.couleur }}</h6>
                     <h6>Durée de vie : {{ LaBougie.ddv }}h</h6>
                     <h6>Taille : {{ LaBougie.taille }}</h6>
+                    <h6>Marque :<a class="card-img-wrapper" href="https://www.nike.com/fr/?cp=98881643959_search_&Macro=-nike-g-10689553137-106491488558-e-c-FR-pure-452529371916-kwd-11642601-9056254&gad_source=1&gclid=Cj0KCQjwy46_BhDOARIsAIvmcwMTWkIy2YUahChq3pehkKcne1Hy_bZoowcC7MuA9u2sGCfqBUq9t0oaAgwHEALw_wcB&gclsrc=aw.ds"> <img class="avatar mx-auto d-block" style="height: 100px; width: 150px; display: block;" src="{{ asset('uploads/images/' ~ LaBougie.Marque.getImageFileName()) }}" ></a></h6>
                   </div>
                 </div>
               </div>
@@ -59,5 +60,62 @@
       </div>
   </div>
 </div>
+<style>
+.card {
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease-in-out;
+    }
+    .card:hover {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    .card-img-top {
+      border-radius: 10px 10px 0 0;
+      max-height: 200px;
+      object-fit: cover;
+    }
+    .card-img-wrapper {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px 10px 0 0;
+    }
+    .card-img-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+    .card:hover .card-img-wrapper::after {
+      opacity: 1;
+    }
+    .card-body {
+      flex: 1;
+      text-align: center;
+    }
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    .text-center {
+      text-align: center;
+    }
+    .card-link {
+      text-decoration: none;
+      color: inherit;
+    }
+    .btn-outline-warning:hover {
+      color: #fff;
+      background-color:rgb(133, 107, 31);
+      border-color:rgb(126, 115, 83);
+    }
+  </style>
 
 {% endblock %}

@@ -1,17 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des bougies{% endblock %}
+{% block title %}Liste des brands{% endblock %}
 
 {% block body %}
 <div class="container">
-    <h1 class="text-center mb-5">Liste des bougies</h1>
+    <h1 class="text-center mb-5">Liste des brands</h1>
 
-    <div class="mb-4">
-      {{ form_start(FiltreBougie) }}
-      {{ form_row(FiltreBougie) }} 
-      <button type="submit" class="btn mt-4 btn-outline-warning">Rechercher</button>
-      {{ form_end(FiltreBougie) }}
-    </div>
+   
 
     {% for message in app.flashes('warning') %}
       <div class="alert alert-warning">
@@ -19,26 +14,26 @@
       </div>
     {% endfor %}
 
-    {% if LesBougies is not empty %}
+    {% if Lesbrands is not empty %}
       <div class="row">
-        {% for labougie in LesBougies %}
+        {% for labrand in Lesbrands %}
           <div class="col-md-4 mb-4 d-flex align-items-stretch">
-            <a href="{{ path('ficheBougie', {'id': labougie.id }) }}" class="card-link w-100">
+            <a href="{{ path('fichebrand', {'id': labrand.id }) }}" class="card-link w-100">
               <div class="card h-100">
                 <div class="card-img-wrapper">
-                  <img class="card-img-top" src="{{ asset('uploads/images/' ~ labougie.imageFileName|replace({'http://': '', 'https://': ''})) }}" alt="Card image">
+                  <img class="card-img-top" src="{{ asset('uploads/images/' ~ labrand.imageFileName|replace({'http://': '', 'https://': ''})) }}" alt="Card image">
                 </div>
                 <div class="card-body d-flex flex-column">
-                  <h5 class="card-title">{{ labougie.nom }}</h5>
-                  <p class="card-text"><strong>Prix :</strong> {{ labougie.prix }} €</p> 
-                </div>  
+                  <h5 class="card-title">{{ labrand.nom }}</h5>
+                  <p class="card-text"><strong>Prix :</strong> {{ labrand.prix }} €</p>
+                </div>
               </div>
             </a>
           </div>
         {% endfor %}
       </div>
     {% else %}
-      <p>Aucun bougie trouvé.</p>
+      <p>Aucun brandf trouvé.</p>
     {% endif %}
 </div>
 {% endblock %}

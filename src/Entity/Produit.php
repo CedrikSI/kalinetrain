@@ -32,6 +32,9 @@ class Produit
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $imageFileName = null;
 
+    #[ORM\ManyToOne(inversedBy: 'LesProduits')]
+    private ?Marque $Marque = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -100,6 +103,18 @@ class Produit
     public function setImageFileName(?string $imageFileName): self
     {
         $this->imageFileName = $imageFileName;
+        return $this;
+    }
+
+    public function getMarque(): ?Marque
+    {
+        return $this->Marque;
+    }
+
+    public function setMarque(?Marque $Marque): static
+    {
+        $this->Marque = $Marque;
+
         return $this;
     }
 }
